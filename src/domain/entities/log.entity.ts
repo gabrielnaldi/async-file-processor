@@ -1,23 +1,14 @@
-export class Log {
-  private readonly properties: {
-    id: string;
-    filePath: string;
-    status: string;
-    createdAt: Date;
-    updatedAt: Date;
-  };
+import { CreateLogContract } from '../contracts/logs/create-log.contract';
+import { LogContract } from '../contracts/logs/log.contract';
 
-  private constructor(contract: {
-    id: string;
-    filePath: string;
-    status: string;
-    createdAt: Date;
-    updatedAt: Date;
-  }) {
+export class Log {
+  private readonly properties: LogContract;
+
+  private constructor(contract: LogContract) {
     this.properties = contract;
   }
 
-  static create(createContract: { id: string; filePath: string }) {
+  static create(createContract: CreateLogContract) {
     const default_status = 'PENDING';
 
     const now = new Date();
