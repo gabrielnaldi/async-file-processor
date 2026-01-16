@@ -8,6 +8,10 @@ export class Log {
     this.properties = contract;
   }
 
+  get status() {
+    return this.properties.status;
+  }
+
   static create(createContract: CreateLogContract) {
     const default_status = 'PENDING';
 
