@@ -10,4 +10,15 @@ describe('Log - Entity', () => {
     expect(log_entity).toBeDefined();
     expect(log_entity).toBeInstanceOf(Log);
   });
+
+  it('should make sure that every log is created with PENDING status', () => {
+    const log_entity = Log.create({
+      id: '1',
+      filePath: '/example/path',
+    });
+
+    expect(log_entity).toBeDefined();
+    expect(log_entity).toBeInstanceOf(Log);
+    expect(log_entity.status).toBe('PENDING');
+  });
 });
