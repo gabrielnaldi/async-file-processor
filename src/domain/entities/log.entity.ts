@@ -1,5 +1,6 @@
 import { CreateLogContract } from '../contracts/logs/create-log.contract';
 import { LogContract } from '../contracts/logs/log.contract';
+import { LogStatusValues } from '../types/logs/logs.types';
 
 export class Log {
   private readonly properties: LogContract;
@@ -10,6 +11,10 @@ export class Log {
 
   get status() {
     return this.properties.status;
+  }
+
+  markAsProcessing() {
+    this.properties.status = LogStatusValues.PROCESSING;
   }
 
   static create(createContract: CreateLogContract) {
