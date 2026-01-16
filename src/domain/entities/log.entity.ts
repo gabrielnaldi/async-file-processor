@@ -23,6 +23,7 @@ export class Log {
 
   markAsProcessing() {
     this.properties.status = LogStatusValues.PROCESSING;
+    this.refreshUpdatedAt();
   }
 
   static create(createContract: CreateLogContract) {
