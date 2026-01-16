@@ -32,4 +32,25 @@ describe('Log - Entity', () => {
 
     expect(log_entity.status).toBe('PROCESSING');
   });
+
+  it('should be able to refresh update date', () => {
+    jest.useFakeTimers();
+
+    const log_entity = Log.create({
+      id: '1',
+      filePath: '/example/path',
+    });
+
+    const datetime_before = log_entity.updatedAt.getTime();
+
+    jest.advanceTimersByTime(100);
+
+    log_entity.refreshUpdatedAt();
+
+    const datetime_after = log_entity.updatedAt.getTime();
+
+    expect(datetime_after).toBeGreaterThan(datetime_before);
+
+    jest.useRealTimers();
+  });
 });
