@@ -13,6 +13,14 @@ export class Log {
     return this.properties.status;
   }
 
+  get updatedAt() {
+    return this.properties.updatedAt;
+  }
+
+  refreshUpdatedAt() {
+    this.properties.updatedAt = new Date();
+  }
+
   markAsProcessing() {
     this.properties.status = LogStatusValues.PROCESSING;
   }
