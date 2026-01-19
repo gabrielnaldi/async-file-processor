@@ -22,4 +22,14 @@ export class LogError extends Error {
 
     return error;
   }
+
+  public static completeAPending() {
+    const error_message = 'PENDING Logs can not be marked as COMPLETED.';
+
+    const error_code = 'COMPLETE_A_PENDING';
+
+    const error = new LogError(error_message, error_code);
+
+    return error;
+  }
 }
