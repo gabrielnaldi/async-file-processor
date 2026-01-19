@@ -26,6 +26,11 @@ export class Log {
     this.refreshUpdatedAt();
   }
 
+  markAsCompleted() {
+    this.properties.status = LogStatusValues.COMPLETED;
+    this.refreshUpdatedAt();
+  }
+
   static create(createContract: CreateLogContract) {
     const default_status = 'PENDING';
 
