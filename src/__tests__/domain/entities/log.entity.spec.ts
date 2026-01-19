@@ -2,7 +2,7 @@ import { Log } from '@src/domain/entities/log.entity';
 import { LogError } from '@src/domain/errors/logs/log.errors';
 
 describe('Log - Entity', () => {
-  it('should be able to successfully create an log', () => {
+  it('should be able to successfully create an Log', () => {
     const log_entity = Log.create({
       id: '1',
       filePath: '/example/path',
@@ -12,7 +12,7 @@ describe('Log - Entity', () => {
     expect(log_entity).toBeInstanceOf(Log);
   });
 
-  it('should make sure that every log is created with PENDING status', () => {
+  it('should make sure that every Log is created with PENDING status', () => {
     const log_entity = Log.create({
       id: '1',
       filePath: '/example/path',
@@ -23,7 +23,7 @@ describe('Log - Entity', () => {
     expect(log_entity.status).toBe('PENDING');
   });
 
-  it('should be able to mark a log as PROCESSING', () => {
+  it('should be able to mark a Log as PROCESSING', () => {
     const log_entity = Log.create({
       id: '1',
       filePath: '/example/path',
@@ -34,7 +34,7 @@ describe('Log - Entity', () => {
     expect(log_entity.status).toBe('PROCESSING');
   });
 
-  it('should be able to mark a log as COMPLETED', () => {
+  it('should be able to mark a Log as COMPLETED', () => {
     const log_entity = Log.create({
       id: '1',
       filePath: '/example/path',
@@ -45,7 +45,7 @@ describe('Log - Entity', () => {
     expect(log_entity.status).toBe('COMPLETED');
   });
 
-  it('should be able to mark a log as FAILED', () => {
+  it('should be able to mark a Log as FAILED', () => {
     const log_entity = Log.create({
       id: '1',
       filePath: '/example/path',
@@ -56,7 +56,7 @@ describe('Log - Entity', () => {
     expect(log_entity.status).toBe('FAILED');
   });
 
-  it('should be able to refresh update date', () => {
+  it('should be able to REFRESH update date', () => {
     jest.useFakeTimers();
 
     const log_entity = Log.create({
@@ -77,7 +77,7 @@ describe('Log - Entity', () => {
     jest.useRealTimers();
   });
 
-  it('should refresh update date after marking a log as PROCESSING', () => {
+  it('should REFRESH update date after marking a Log as PROCESSING', () => {
     jest.useFakeTimers();
 
     const log_entity = Log.create({
@@ -98,7 +98,7 @@ describe('Log - Entity', () => {
     jest.useRealTimers();
   });
 
-  it('should refresh update date after marking a log as COMPLETED', () => {
+  it('should REFRESH update date after marking a Log as COMPLETED', () => {
     jest.useFakeTimers();
 
     const log_entity = Log.create({
@@ -119,7 +119,7 @@ describe('Log - Entity', () => {
     jest.useRealTimers();
   });
 
-  it('should refresh update date after marking a log as FAILED', () => {
+  it('should REFRESH update date after marking a Log as FAILED', () => {
     jest.useFakeTimers();
 
     const log_entity = Log.create({
@@ -140,7 +140,7 @@ describe('Log - Entity', () => {
     jest.useRealTimers();
   });
 
-  it('should not allow a PROCESSING Job to me marked as PROCESSING', () => {
+  it('should not allow a PROCESSING Log to me marked as PROCESSING', () => {
     const log_entity = Log.create({
       id: '1',
       filePath: '/example/path',
