@@ -85,4 +85,25 @@ describe('Log - Entity', () => {
 
     jest.useRealTimers();
   });
+
+  it('should refresh update date after marking a log as COMPLETED', () => {
+    jest.useFakeTimers();
+
+    const log_entity = Log.create({
+      id: '1',
+      filePath: '/example/path',
+    });
+
+    const datetime_before = log_entity.updatedAt.getTime();
+
+    jest.advanceTimersByTime(100);
+
+    log_entity.markAsCompleted();
+
+    const datetime_after = log_entity.updatedAt.getTime();
+
+    expect(datetime_after).toBeGreaterThan(datetime_before);
+
+    jest.useRealTimers();
+  });
 });
