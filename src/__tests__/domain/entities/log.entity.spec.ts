@@ -138,4 +138,17 @@ describe('Log - Entity', () => {
 
     jest.useRealTimers();
   });
+
+  it('should not allow a PROCESSING Job to me marked as PROCESSING', () => {
+    const log_entity = Log.create({
+      id: '1',
+      filePath: '/example/path',
+    });
+
+    log_entity.markAsProcessing();
+
+    const fn = () => log_entity.markAsProcessing();
+
+    expect(fn).toThrow();
+  });
 });
