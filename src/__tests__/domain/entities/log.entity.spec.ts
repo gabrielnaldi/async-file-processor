@@ -19,7 +19,9 @@ describe('Log - Entity', () => {
     });
 
     expect(log_entity).toBeDefined();
+
     expect(log_entity).toBeInstanceOf(Log);
+
     expect(log_entity.status).toBe('PENDING');
   });
 
@@ -34,22 +36,26 @@ describe('Log - Entity', () => {
     expect(log_entity.status).toBe('PROCESSING');
   });
 
-  it('should be able to mark a Log as COMPLETED', () => {
+  it('should be able to mark a PROCESSING Log as COMPLETED', () => {
     const log_entity = Log.create({
       id: '1',
       filePath: '/example/path',
     });
+
+    log_entity.markAsProcessing();
 
     log_entity.markAsCompleted();
 
     expect(log_entity.status).toBe('COMPLETED');
   });
 
-  it('should be able to mark a Log as FAILED', () => {
+  it('should be able to mark a PROCESSING Log as FAILED', () => {
     const log_entity = Log.create({
       id: '1',
       filePath: '/example/path',
     });
+
+    log_entity.markAsProcessing();
 
     log_entity.markAsFailed();
 
@@ -109,6 +115,8 @@ describe('Log - Entity', () => {
     const datetime_before = log_entity.updatedAt.getTime();
 
     jest.advanceTimersByTime(100);
+
+    log_entity.markAsProcessing();
 
     log_entity.markAsCompleted();
 
