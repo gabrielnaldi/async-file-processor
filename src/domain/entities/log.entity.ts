@@ -31,6 +31,11 @@ export class Log {
     this.refreshUpdatedAt();
   }
 
+  markAsFailed() {
+    this.properties.status = LogStatusValues.FAILED;
+    this.refreshUpdatedAt();
+  }
+
   static create(createContract: CreateLogContract) {
     const default_status = 'PENDING';
 
