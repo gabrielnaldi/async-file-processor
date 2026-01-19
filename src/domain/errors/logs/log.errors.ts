@@ -4,6 +4,8 @@ export class LogError extends Error {
   constructor(message: string, code: string) {
     super(message);
 
+    this.name = 'LogError';
+
     this._code = code;
   }
 

@@ -154,6 +154,7 @@ describe('Log - Entity', () => {
       fn();
     } catch (error) {
       expect(error).toBeInstanceOf(LogError);
+      expect((error as LogError).name).toBe('LogError');
       expect((error as LogError).code).toBe('ALREADY_PROCESSING');
     }
   });
