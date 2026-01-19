@@ -23,6 +23,16 @@ export class LogError extends Error {
     return error;
   }
 
+  public static alreadyCompleted() {
+    const error_message = 'Log already COMPLETED.';
+
+    const error_code = 'ALREADY_COMPLETED';
+
+    const error = new LogError(error_message, error_code);
+
+    return error;
+  }
+
   public static completeAPending() {
     const error_message = 'PENDING Logs can not be marked as COMPLETED.';
 
