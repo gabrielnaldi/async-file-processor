@@ -31,6 +31,9 @@ export class Log {
   }
 
   markAsCompleted() {
+    if (this.properties.status === 'PENDING')
+      throw new Error('A PENDING Log can not be marked as COMPLETED.');
+
     this.properties.status = LogStatusValues.COMPLETED;
     this.refreshUpdatedAt();
   }
