@@ -14,7 +14,7 @@ export class LogError extends Error {
   }
 
   public static alreadyProcessing() {
-    const error_message = 'Log already being processed.';
+    const error_message = 'Log already PROCESSING';
 
     const error_code = 'ALREADY_PROCESSING';
 
