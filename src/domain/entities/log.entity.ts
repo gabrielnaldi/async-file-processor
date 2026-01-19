@@ -22,6 +22,9 @@ export class Log {
   }
 
   markAsProcessing() {
+    if (this.properties.status === 'PROCESSING')
+      throw new Error('Log already being processed.');
+
     this.properties.status = LogStatusValues.PROCESSING;
     this.refreshUpdatedAt();
   }
