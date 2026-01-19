@@ -44,6 +44,17 @@ describe('Log - Entity', () => {
     expect(log_entity.status).toBe('COMPLETED');
   });
 
+  it('should be able to mark a log as FAILED', () => {
+    const log_entity = Log.create({
+      id: '1',
+      filePath: '/example/path',
+    });
+
+    log_entity.markAsFailed();
+
+    expect(log_entity.status).toBe('FAILED');
+  });
+
   it('should be able to refresh update date', () => {
     jest.useFakeTimers();
 
