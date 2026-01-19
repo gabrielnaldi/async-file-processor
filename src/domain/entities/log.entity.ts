@@ -1,5 +1,6 @@
 import { CreateLogContract } from '../contracts/logs/create-log.contract';
 import { LogContract } from '../contracts/logs/log.contract';
+import { LogError } from '../errors/logs/log.errors';
 import { LogStatusValues } from '../types/logs/logs.types';
 
 export class Log {
@@ -23,7 +24,7 @@ export class Log {
 
   markAsProcessing() {
     if (this.properties.status === 'PROCESSING')
-      throw new Error('Log already being processed.');
+      throw LogError.alreadyProcessing();
 
     this.properties.status = LogStatusValues.PROCESSING;
     this.refreshUpdatedAt();

@@ -1,4 +1,5 @@
 import { Log } from '@src/domain/entities/log.entity';
+import { LogError } from '@src/domain/errors/logs/log.errors';
 
 describe('Log - Entity', () => {
   it('should be able to successfully create an log', () => {
@@ -149,6 +150,11 @@ describe('Log - Entity', () => {
 
     const fn = () => log_entity.markAsProcessing();
 
-    expect(fn).toThrow();
+    try {
+      fn();
+    } catch (error) {
+      expect(error).toBeInstanceOf(LogError);
+      expect((error as LogError).code).toBe('ALREADY_PROCESSING');
+    }
   });
 });
