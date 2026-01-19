@@ -42,6 +42,8 @@ export class Log {
   }
 
   markAsFailed() {
+    if (this.properties.status === 'PENDING') throw LogError.failAPending();
+
     if (this.properties.status === 'FAILED') throw LogError.alreadyFailed();
 
     this.properties.status = LogStatusValues.FAILED;
