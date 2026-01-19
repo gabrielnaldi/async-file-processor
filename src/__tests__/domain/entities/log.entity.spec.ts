@@ -158,4 +158,21 @@ describe('Log - Entity', () => {
       expect((error as LogError).code).toBe('ALREADY_PROCESSING');
     }
   });
+
+  it('should not allow a PENDING Log to me marked as COMPLETED', () => {
+    const log_entity = Log.create({
+      id: '1',
+      filePath: '/example/path',
+    });
+
+    const fn = () => log_entity.markAsCompleted();
+
+    try {
+      fn();
+    } catch (error) {
+      expect(error).toBeInstanceOf(LogError);
+      expect((error as LogError).name).toBe('LogError');
+      expect((error as LogError).code).toBe('COMPLETE_A_PENDING');
+    }
+  });
 });
