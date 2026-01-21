@@ -127,13 +127,15 @@ describe('Log - Entity', () => {
     jest.useRealTimers();
   });
 
-  it('should REFRESH update date after marking a Log as FAILED', () => {
+  it('should REFRESH update date after marking a PROCESSING Log as FAILED', () => {
     jest.useFakeTimers();
 
     const log_entity = Log.create({
       id: '1',
       filePath: '/example/path',
     });
+
+    log_entity.markAsProcessing();
 
     const datetime_before = log_entity.updatedAt.getTime();
 
