@@ -1,5 +1,6 @@
 import { Log } from '@src/domain/entities/log.entity';
 import { LogError } from '@src/domain/errors/logs/log.errors';
+import { LogFactory } from '../factories/log.factory';
 
 describe('Log - Entity', () => {
   it('should be able to successfully create an Log', () => {
@@ -26,10 +27,7 @@ describe('Log - Entity', () => {
   });
 
   it('should be able to mark a Log as PROCESSING', () => {
-    const log_entity = Log.create({
-      id: '1',
-      filePath: '/example/path',
-    });
+    const log_entity = LogFactory.buildPending();
 
     log_entity.markAsProcessing();
 
@@ -37,12 +35,7 @@ describe('Log - Entity', () => {
   });
 
   it('should be able to mark a PROCESSING Log as COMPLETED', () => {
-    const log_entity = Log.create({
-      id: '1',
-      filePath: '/example/path',
-    });
-
-    log_entity.markAsProcessing();
+    const log_entity = LogFactory.buildProcessing();
 
     log_entity.markAsCompleted();
 
@@ -50,12 +43,7 @@ describe('Log - Entity', () => {
   });
 
   it('should be able to mark a PROCESSING Log as FAILED', () => {
-    const log_entity = Log.create({
-      id: '1',
-      filePath: '/example/path',
-    });
-
-    log_entity.markAsProcessing();
+    const log_entity = LogFactory.buildProcessing();
 
     log_entity.markAsFailed();
 
@@ -65,10 +53,7 @@ describe('Log - Entity', () => {
   it('should be able to REFRESH update date', () => {
     jest.useFakeTimers();
 
-    const log_entity = Log.create({
-      id: '1',
-      filePath: '/example/path',
-    });
+    const log_entity = LogFactory.buildPending();
 
     const datetime_before = log_entity.updatedAt.getTime();
 
@@ -86,10 +71,7 @@ describe('Log - Entity', () => {
   it('should REFRESH update date after marking a Log as PROCESSING', () => {
     jest.useFakeTimers();
 
-    const log_entity = Log.create({
-      id: '1',
-      filePath: '/example/path',
-    });
+    const log_entity = LogFactory.buildPending();
 
     const datetime_before = log_entity.updatedAt.getTime();
 
@@ -107,14 +89,9 @@ describe('Log - Entity', () => {
   it('should REFRESH update date after marking a PROCESSING Log as COMPLETED', () => {
     jest.useFakeTimers();
 
-    const log_entity = Log.create({
-      id: '1',
-      filePath: '/example/path',
-    });
+    const log_entity = LogFactory.buildProcessing();
 
     const datetime_before = log_entity.updatedAt.getTime();
-
-    log_entity.markAsProcessing();
 
     jest.advanceTimersByTime(100);
 
@@ -130,12 +107,7 @@ describe('Log - Entity', () => {
   it('should REFRESH update date after marking a PROCESSING Log as FAILED', () => {
     jest.useFakeTimers();
 
-    const log_entity = Log.create({
-      id: '1',
-      filePath: '/example/path',
-    });
-
-    log_entity.markAsProcessing();
+    const log_entity = LogFactory.buildProcessing();
 
     const datetime_before = log_entity.updatedAt.getTime();
 
@@ -151,12 +123,7 @@ describe('Log - Entity', () => {
   });
 
   it('should not allow a PROCESSING Log to me marked as PROCESSING', () => {
-    const log_entity = Log.create({
-      id: '1',
-      filePath: '/example/path',
-    });
-
-    log_entity.markAsProcessing();
+    const log_entity = LogFactory.buildProcessing();
 
     const fn = () => log_entity.markAsProcessing();
 
@@ -170,10 +137,7 @@ describe('Log - Entity', () => {
   });
 
   it('should not allow a PENDING Log to me marked as COMPLETED', () => {
-    const log_entity = Log.create({
-      id: '1',
-      filePath: '/example/path',
-    });
+    const log_entity = LogFactory.buildPending();
 
     const fn = () => log_entity.markAsCompleted();
 
@@ -187,14 +151,7 @@ describe('Log - Entity', () => {
   });
 
   it('should not allow a COMPLETED Log to me marked as COMPLETED', () => {
-    const log_entity = Log.create({
-      id: '1',
-      filePath: '/example/path',
-    });
-
-    log_entity.markAsProcessing();
-
-    log_entity.markAsCompleted();
+    const log_entity = LogFactory.buildCompleted();
 
     const fn = () => log_entity.markAsCompleted();
 
@@ -208,13 +165,7 @@ describe('Log - Entity', () => {
   });
 
   it('should not allow a FAILED Log to me marked as FAILED', () => {
-    const log_entity = Log.create({
-      id: '1',
-      filePath: '/example/path',
-    });
-
-    log_entity.markAsProcessing();
-    log_entity.markAsFailed();
+    const log_entity = LogFactory.buildFailed();
 
     const fn = () => log_entity.markAsFailed();
 
@@ -226,4 +177,6 @@ describe('Log - Entity', () => {
       expect((error as LogError).code).toBe('ALREADY_FAILED');
     }
   });
+
+  // it('should not allow to mark a FAILED log as COMPLETED', () => {});
 });
