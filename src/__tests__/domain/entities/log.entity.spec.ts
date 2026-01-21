@@ -104,7 +104,7 @@ describe('Log - Entity', () => {
     jest.useRealTimers();
   });
 
-  it('should REFRESH update date after marking a Log as COMPLETED', () => {
+  it('should REFRESH update date after marking a PROCESSING Log as COMPLETED', () => {
     jest.useFakeTimers();
 
     const log_entity = Log.create({
@@ -114,9 +114,9 @@ describe('Log - Entity', () => {
 
     const datetime_before = log_entity.updatedAt.getTime();
 
-    jest.advanceTimersByTime(100);
-
     log_entity.markAsProcessing();
+
+    jest.advanceTimersByTime(100);
 
     log_entity.markAsCompleted();
 
@@ -193,6 +193,7 @@ describe('Log - Entity', () => {
     });
 
     log_entity.markAsProcessing();
+
     log_entity.markAsCompleted();
 
     const fn = () => log_entity.markAsCompleted();
@@ -200,7 +201,6 @@ describe('Log - Entity', () => {
     try {
       fn();
     } catch (error) {
-      console.log('erro', error);
       expect(error).toBeInstanceOf(LogError);
       expect((error as LogError).name).toBe('LogError');
       expect((error as LogError).code).toBe('ALREADY_COMPLETED');
