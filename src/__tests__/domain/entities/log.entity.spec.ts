@@ -191,15 +191,37 @@ describe('Log - Entity', () => {
     });
 
     log_entity.markAsProcessing();
+    log_entity.markAsCompleted();
 
     const fn = () => log_entity.markAsCompleted();
 
     try {
       fn();
     } catch (error) {
+      console.log('erro', error);
       expect(error).toBeInstanceOf(LogError);
       expect((error as LogError).name).toBe('LogError');
       expect((error as LogError).code).toBe('ALREADY_COMPLETED');
+    }
+  });
+
+  it('should not allow a FAILED Log to me marked as FAILED', () => {
+    const log_entity = Log.create({
+      id: '1',
+      filePath: '/example/path',
+    });
+
+    log_entity.markAsProcessing();
+    log_entity.markAsFailed();
+
+    const fn = () => log_entity.markAsFailed();
+
+    try {
+      fn();
+    } catch (error) {
+      expect(error).toBeInstanceOf(LogError);
+      expect((error as LogError).name).toBe('LogError');
+      expect((error as LogError).code).toBe('ALREADY_FAILED');
     }
   });
 });
