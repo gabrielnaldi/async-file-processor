@@ -47,6 +47,8 @@ export class Log {
 
     if (this.properties.status === 'FAILED') throw LogError.alreadyFailed();
 
+    if (this.properties.status === 'COMPLETED') throw LogError.failACompleted();
+
     this.properties.status = LogStatusValues.FAILED;
 
     this.refreshUpdatedAt();

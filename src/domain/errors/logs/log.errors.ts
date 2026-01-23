@@ -72,4 +72,14 @@ export class LogError extends Error {
 
     return error;
   }
+
+  public static failACompleted() {
+    const error_message = 'COMPLETED Logs can not be marked as FAILED.';
+
+    const error_code = 'FAIL_A_COMPLETED';
+
+    const error = new LogError(error_message, error_code);
+
+    return error;
+  }
 }
