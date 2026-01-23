@@ -53,6 +53,16 @@ export class LogError extends Error {
     return error;
   }
 
+  public static completeAFailed() {
+    const error_message = 'FAILED Logs can not be marked as COMPLETED.';
+
+    const error_code = 'COMPLETE_A_FAILED';
+
+    const error = new LogError(error_message, error_code);
+
+    return error;
+  }
+
   public static failAPending() {
     const error_message = 'PENDING Logs can not be marked as FAILED.';
 
