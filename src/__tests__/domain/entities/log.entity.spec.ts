@@ -137,7 +137,7 @@ describe('Log - Entity', () => {
     }
   });
 
-  it('should not allow a PENDING Log to me marked as COMPLETED', () => {
+  it('should not allow a PENDING LOG to me marked as COMPLETED', () => {
     const log_entity = LogFactory.buildPending();
 
     const fn = () => log_entity.markAsCompleted();
@@ -149,6 +149,21 @@ describe('Log - Entity', () => {
       expect(error).toBeInstanceOf(LogError);
       expect((error as LogError).name).toBe('LogError');
       expect((error as LogError).code).toBe('COMPLETE_A_PENDING');
+    }
+  });
+
+  it('should not allow a PENDING LOG to me marked as FAILED', () => {
+    const log_entity = LogFactory.buildPending();
+
+    const fn = () => log_entity.markAsFailed();
+
+    try {
+      fn();
+      fail('FORCED ERROR');
+    } catch (error) {
+      expect(error).toBeInstanceOf(LogError);
+      expect((error as LogError).name).toBe('LogError');
+      expect((error as LogError).code).toBe('FAIL_A_PENDING');
     }
   });
 
