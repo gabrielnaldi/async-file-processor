@@ -1,10 +1,13 @@
 import { CreateLogContract } from '@src/domain/contracts/logs/create-log.contract';
 import { Log } from '@src/domain/entities/log.entity';
+import { LogId } from '@src/domain/value-objects/log-id.value-object';
 
 export class LogFactory {
   public static buildPending(override?: Partial<CreateLogContract>) {
+    const log_id = override?.id || LogId.create('1');
+
     const pending_log = Log.create({
-      id: override?.id || '1',
+      id: log_id,
       filePath: override?.filePath || '/example/path',
     });
 

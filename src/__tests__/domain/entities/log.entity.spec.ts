@@ -1,11 +1,14 @@
 import { Log } from '@src/domain/entities/log.entity';
 import { LogError } from '@src/domain/errors/logs/log.errors';
 import { LogFactory } from '../factories/log.factory';
+import { LogId } from '@src/domain/value-objects/log-id.value-object';
 
 describe('Log - Entity', () => {
   it('should be able to successfully create an Log', () => {
+    const log_id = LogId.create('1');
+
     const log_entity = Log.create({
-      id: '1',
+      id: log_id,
       filePath: '/example/path',
     });
 
@@ -14,8 +17,10 @@ describe('Log - Entity', () => {
   });
 
   it('should make sure that every Log is created with PENDING status', () => {
+    const log_id = LogId.create('1');
+
     const log_entity = Log.create({
-      id: '1',
+      id: log_id,
       filePath: '/example/path',
     });
 
