@@ -167,6 +167,21 @@ describe('Log - Entity', () => {
     }
   });
 
+  it('should not allow a COMPLETED LOG to be marked as PROCESSING', () => {
+    const log_entity = LogFactory.buildCompleted();
+
+    const fn = () => log_entity.markAsProcessing();
+
+    try {
+      fn();
+      fail('BACKUP: FORCED ERROR');
+    } catch (error) {
+      expect(error).toBeInstanceOf(LogError);
+      expect((error as LogError).name).toBe('LogError');
+      expect((error as LogError).code).toBe('PROCESS_A_COMPLETED');
+    }
+  });
+
   it('should not allow a COMPLETED LOG to me marked as COMPLETED', () => {
     const log_entity = LogFactory.buildCompleted();
 
