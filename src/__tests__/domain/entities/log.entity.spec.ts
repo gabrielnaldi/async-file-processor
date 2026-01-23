@@ -129,6 +129,7 @@ describe('Log - Entity', () => {
 
     try {
       fn();
+      fail('FORCED ERROR');
     } catch (error) {
       expect(error).toBeInstanceOf(LogError);
       expect((error as LogError).name).toBe('LogError');
@@ -143,6 +144,7 @@ describe('Log - Entity', () => {
 
     try {
       fn();
+      fail('FORCED ERROR');
     } catch (error) {
       expect(error).toBeInstanceOf(LogError);
       expect((error as LogError).name).toBe('LogError');
@@ -157,6 +159,7 @@ describe('Log - Entity', () => {
 
     try {
       fn();
+      fail('FORCED ERROR');
     } catch (error) {
       expect(error).toBeInstanceOf(LogError);
       expect((error as LogError).name).toBe('LogError');
@@ -164,13 +167,14 @@ describe('Log - Entity', () => {
     }
   });
 
-  it('should not allow a FAILED Log to me marked as FAILED', () => {
+  it('should not allow a FAILED LOG to me marked as FAILED', () => {
     const log_entity = LogFactory.buildFailed();
 
     const fn = () => log_entity.markAsFailed();
 
     try {
       fn();
+      fail('FORCED ERROR');
     } catch (error) {
       expect(error).toBeInstanceOf(LogError);
       expect((error as LogError).name).toBe('LogError');
