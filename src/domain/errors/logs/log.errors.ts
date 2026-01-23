@@ -82,4 +82,14 @@ export class LogError extends Error {
 
     return error;
   }
+
+  public static processACompleted() {
+    const error_message = 'COMPLETED Logs can not be marked as PROCESSING';
+
+    const error_code = 'PROCESS_A_COMPLETED';
+
+    const error = new LogError(error_message, error_code);
+
+    return error;
+  }
 }

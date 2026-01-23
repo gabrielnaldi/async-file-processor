@@ -26,6 +26,9 @@ export class Log {
     if (this.properties.status === 'PROCESSING')
       throw LogError.alreadyProcessing();
 
+    if (this.properties.status === 'COMPLETED')
+      throw LogError.processACompleted();
+
     this.properties.status = LogStatusValues.PROCESSING;
     this.refreshUpdatedAt();
   }
