@@ -6,4 +6,10 @@ describe('Log ID - Value object', () => {
 
     expect(log_id.value).toBeDefined();
   });
+
+  it('should not allow id to be empty', () => {
+    const fn = () => LogId.create('');
+
+    expect(fn).toThrow();
+  });
 });
