@@ -10,6 +10,8 @@ export class LogId {
   }
 
   public static create(value: string) {
+    if (value.length === 0) throw new Error('LOG ID must not be empty');
+
     const log_id = new LogId(value);
 
     return log_id;
