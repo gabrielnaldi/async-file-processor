@@ -182,5 +182,18 @@ describe('Log - Entity', () => {
     }
   });
 
-  // it('should not allow to mark a FAILED log as COMPLETED', () => {});
+  it('should not allow a FAILED LOG to be marked as COMPLETED', () => {
+    const log_entity = LogFactory.buildFailed();
+
+    const fn = () => log_entity.markAsCompleted();
+
+    try {
+      fn();
+      fail('FORCED ERROR');
+    } catch (error) {
+      expect(error).toBeInstanceOf(LogError);
+      expect((error as LogError).name).toBe('LogError');
+      expect((error as LogError).code).toBe('COMPLETE_A_FAILED');
+    }
+  });
 });
