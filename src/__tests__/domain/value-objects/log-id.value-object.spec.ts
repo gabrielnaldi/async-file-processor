@@ -1,3 +1,4 @@
+import { LogIdError } from '@src/domain/errors/value-objects/log-id.errors';
 import { LogId } from '@src/domain/value-objects/log-id.value-object';
 
 describe('Log ID - Value object', () => {
@@ -10,6 +11,13 @@ describe('Log ID - Value object', () => {
   it('should not allow id to be empty', () => {
     const fn = () => LogId.create('');
 
-    expect(fn).toThrow();
+    try {
+      fn();
+      fail('FORCED ERROR');
+    } catch (error) {
+      expect(error).toBeInstanceOf(LogIdError);
+      expect((error as LogIdError).name).toBe('LogIdError');
+      expect((error as LogIdError).code).toBe('NOT_EMPTY');
+    }
   });
 });

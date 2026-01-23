@@ -1,3 +1,5 @@
+import { LogIdError } from '../errors/value-objects/log-id.errors';
+
 export class LogId {
   private readonly _value: string;
 
@@ -10,7 +12,7 @@ export class LogId {
   }
 
   public static create(value: string) {
-    if (value.length === 0) throw new Error('LOG ID must not be empty');
+    if (value.length === 0) throw LogIdError.notEmpty();
 
     const log_id = new LogId(value);
 
