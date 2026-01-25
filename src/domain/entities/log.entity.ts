@@ -10,6 +10,10 @@ export class Log {
     this.properties = contract;
   }
 
+  get id() {
+    return this.properties.id.value;
+  }
+
   get status() {
     return this.properties.status;
   }
