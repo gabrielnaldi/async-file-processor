@@ -8,7 +8,7 @@ describe('List Logs - Use Case', () => {
   let useCase: ListLogsUseCase;
   let repository: LogRepository;
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     repository = new InMemoryLogRepository();
     useCase = new ListLogsUseCase(repository);
   });
@@ -22,5 +22,11 @@ describe('List Logs - Use Case', () => {
 
     expect(logs).toHaveLength(1);
     expect(logs[0]).toBeInstanceOf(Log);
+  });
+
+  it('should return an empty list when there are no LOGs', async () => {
+    const logs = await useCase.execute();
+
+    expect(logs.length).toBe(0);
   });
 });
