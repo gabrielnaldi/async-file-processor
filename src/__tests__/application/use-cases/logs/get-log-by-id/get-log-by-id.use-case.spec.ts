@@ -25,4 +25,10 @@ describe('GetLogById - Use case', () => {
     expect(log_found?.id).toBe('1');
     expect(log_found?.status).toBe('PENDING');
   });
+
+  it('should receive a null value when log does not exist', async () => {
+    const log_found = await useCase.execute('invalid-id');
+
+    expect(log_found).toBeNull();
+  });
 });
