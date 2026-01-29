@@ -18,6 +18,10 @@ export class Log {
     return this.properties.status;
   }
 
+  get filePath() {
+    return this.properties.filePath;
+  }
+
   get updatedAt() {
     return this.properties.updatedAt;
   }
