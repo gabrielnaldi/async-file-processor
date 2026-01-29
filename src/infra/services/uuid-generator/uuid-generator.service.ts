@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { IdGeneratorService } from '@src/application/interfaces/services/id-generator/id-generator.service';
+import { IdGenerator } from '@src/application/interfaces/id-generator/id-generator.interface';
 
 @Injectable()
-export class UUIDGeneratorService implements IdGeneratorService {
+export class UUIDGeneratorService implements IdGenerator {
   public generate() {
     const id = crypto.randomUUID();
 
