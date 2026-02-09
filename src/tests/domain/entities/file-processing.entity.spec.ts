@@ -35,4 +35,37 @@ describe('FileProcessing - Entity', () => {
     expect(entity.errorReason).toBeNull();
     expect(entity.processedAt).toBeNull();
   });
+
+  it('should make sure originalName is not emtpy', () => {
+    const data: FileProcessingCreateContract = {
+      ...DATA_EXAMPLE,
+      originalName: '',
+    };
+
+    const fn = () => FileProcessing.create(data);
+
+    expect(fn).toThrow('Property "originalName" must not be empty!');
+  });
+
+  it('should make sure mimeType is not emtpy', () => {
+    const data: FileProcessingCreateContract = {
+      ...DATA_EXAMPLE,
+      mimeType: '',
+    };
+
+    const fn = () => FileProcessing.create(data);
+
+    expect(fn).toThrow('Property "mimeType" must not be empty!');
+  });
+
+  it('should make sure tempPath is not emtpy', () => {
+    const data: FileProcessingCreateContract = {
+      ...DATA_EXAMPLE,
+      tempPath: '',
+    };
+
+    const fn = () => FileProcessing.create(data);
+
+    expect(fn).toThrow('Property "tempPath" must not be empty!');
+  });
 });
