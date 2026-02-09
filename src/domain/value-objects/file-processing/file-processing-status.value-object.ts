@@ -25,6 +25,9 @@ export class FileProcessingStatus {
   }
 
   public markAsFailed() {
+    if (this._value !== 'PROCESSING')
+      throw new Error('Only processing files can fail!');
+
     this._value = 'FAILED';
   }
 
