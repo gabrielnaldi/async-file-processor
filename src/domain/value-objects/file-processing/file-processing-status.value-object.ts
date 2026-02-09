@@ -13,7 +13,7 @@ export class FileProcessingStatus {
   }
 
   // TRANSITIONS
-  public markProcessing() {
+  public markAsProcessing() {
     this._value = 'PROCESSING';
   }
 
