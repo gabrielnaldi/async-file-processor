@@ -14,6 +14,9 @@ export class FileProcessingStatus {
 
   // TRANSITIONS
   public markAsProcessing() {
+    if (this._value !== 'PENDING')
+      throw new Error('Only pending files can be processed!');
+
     this._value = 'PROCESSING';
   }
 
