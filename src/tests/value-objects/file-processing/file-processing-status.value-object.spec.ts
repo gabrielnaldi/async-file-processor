@@ -39,4 +39,12 @@ describe('FileProcessingStatus - Value Object', () => {
 
     expect(fn).toThrow('Only processing files can be completed!');
   });
+
+  it('should not allow a status different from PROCESSING to transition to FAILED', () => {
+    const status = FileProcessingStatusFactory.makeAPending();
+
+    const fn = () => status.markAsFailed();
+
+    expect(fn).toThrow('Only processing files can fail!');
+  });
 });
