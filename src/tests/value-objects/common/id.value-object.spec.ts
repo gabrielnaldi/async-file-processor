@@ -8,4 +8,10 @@ describe('ID - Value Object', () => {
     expect(id).toBeDefined();
     expect(id.value).toBe('valid-1');
   });
+
+  it('should not allow id to be empty', () => {
+    const fn = () => Id.create('');
+
+    expect(fn).toThrow('Id must not be empty!');
+  });
 });
