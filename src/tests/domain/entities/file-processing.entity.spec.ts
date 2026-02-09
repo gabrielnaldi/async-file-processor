@@ -68,4 +68,15 @@ describe('FileProcessing - Entity', () => {
 
     expect(fn).toThrow('Property "tempPath" must not be empty!');
   });
+
+  it('should make sure size is always positive', () => {
+    const data: FileProcessingCreateContract = {
+      ...DATA_EXAMPLE,
+      size: -100,
+    };
+
+    const fn = () => FileProcessing.create(data);
+
+    expect(fn).toThrow('Property "size" must be positive!');
+  });
 });
