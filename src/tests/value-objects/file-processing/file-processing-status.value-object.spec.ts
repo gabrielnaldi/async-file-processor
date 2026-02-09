@@ -23,4 +23,12 @@ describe('FileProcessingStatus - Value Object', () => {
 
     expect(fileProcessingStatus.value).toBe('COMPLETED');
   });
+
+  it('should not allow status different from PROCESSING to transition to COMPLETED', () => {
+    const status = FileProcessingStatusFactory.makeAPending();
+
+    const fn = () => status.markAsCompleted();
+
+    expect(fn).toThrow('Only processing files can be completed!');
+  });
 });
