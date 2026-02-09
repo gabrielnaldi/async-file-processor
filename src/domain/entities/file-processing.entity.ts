@@ -2,6 +2,7 @@ import {
   FileProcessingContract,
   FileProcessingCreateContract,
 } from '../contracts/file-processing/file-processing.contract';
+import { FileProcessingStatus } from '../value-objects/file-processing/file-processing-status.value-object';
 
 export class FileProcessing {
   private props: FileProcessingContract;
@@ -32,7 +33,7 @@ export class FileProcessing {
   }
 
   get status() {
-    return this.props.status;
+    return this.props.status.value;
   }
 
   get createdAt() {
@@ -71,13 +72,15 @@ export class FileProcessing {
     if (createContract.size <= 0)
       throw new Error('Property "size" must be positive!');
 
+    const fileStatus = FileProcessingStatus.create();
+
     const contractData: FileProcessingContract = {
       id: createContract.id,
       originalName: createContract.originalName,
       mimeType: createContract.mimeType,
       size: createContract.size,
       tempPath: createContract.tempPath,
-      status: 'PENDING',
+      status: fileStatus,
       finalPath: null,
       errorReason: null,
       createdAt: now,

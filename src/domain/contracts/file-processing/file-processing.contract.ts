@@ -1,4 +1,5 @@
 import { Id } from '@src/domain/value-objects/common/id.value-object';
+import { FileProcessingStatus } from '@src/domain/value-objects/file-processing/file-processing-status.value-object';
 
 export interface FileProcessingContract {
   // REQUIRED
@@ -7,7 +8,7 @@ export interface FileProcessingContract {
   mimeType: string;
   size: number;
   tempPath: string;
-  status: string;
+  status: FileProcessingStatus;
   createdAt: Date;
   updatedAt: Date;
   // OPTIONALS
