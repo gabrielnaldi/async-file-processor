@@ -10,6 +10,52 @@ export class FileProcessing {
     this.props = contract;
   }
 
+  // GETTERS
+  get id() {
+    return this.props.id;
+  }
+
+  get originalName() {
+    return this.props.originalName;
+  }
+
+  get mimeType() {
+    return this.props.mimeType;
+  }
+
+  get size() {
+    return this.props.size;
+  }
+
+  get tempPath() {
+    return this.props.tempPath;
+  }
+
+  get status() {
+    return this.props.status;
+  }
+
+  get createdAt() {
+    return this.props.createdAt;
+  }
+
+  get updatedAt() {
+    return this.props.updatedAt;
+  }
+
+  get finalPath() {
+    return this.props.finalPath;
+  }
+
+  get errorReason() {
+    return this.props.errorReason;
+  }
+
+  get processedAt() {
+    return this.props.processedAt;
+  }
+
+  // FACTORIES
   public static create(createContract: FileProcessingCreateContract) {
     const now = new Date();
 
