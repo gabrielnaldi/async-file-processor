@@ -59,6 +59,15 @@ export class FileProcessing {
   public static create(createContract: FileProcessingCreateContract) {
     const now = new Date();
 
+    if (createContract.originalName === '')
+      throw new Error('Property "originalName" must not be empty!');
+
+    if (createContract.mimeType === '')
+      throw new Error('Property "mimeType" must not be empty!');
+
+    if (createContract.tempPath === '')
+      throw new Error('Property "tempPath" must not be empty!');
+
     const contractData: FileProcessingContract = {
       id: createContract.id,
       originalName: createContract.originalName,
