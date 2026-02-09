@@ -10,6 +10,8 @@ export class Id {
   }
 
   public static create(value: string) {
+    if (value === '') throw new Error('Id must not be empty!');
+
     const id = new Id(value);
 
     return id;
