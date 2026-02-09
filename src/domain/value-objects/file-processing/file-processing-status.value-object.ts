@@ -18,6 +18,9 @@ export class FileProcessingStatus {
   }
 
   public markAsCompleted() {
+    if (this._value !== 'PROCESSING')
+      throw new Error('Only processing files can be completed!');
+
     this._value = 'COMPLETED';
   }
 
