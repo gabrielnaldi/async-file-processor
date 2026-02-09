@@ -68,6 +68,9 @@ export class FileProcessing {
     if (createContract.tempPath === '')
       throw new Error('Property "tempPath" must not be empty!');
 
+    if (createContract.size <= 0)
+      throw new Error('Property "size" must be positive!');
+
     const contractData: FileProcessingContract = {
       id: createContract.id,
       originalName: createContract.originalName,
