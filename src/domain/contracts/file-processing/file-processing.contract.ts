@@ -1,14 +1,16 @@
 export interface FileProcessingContract {
+  // REQUIRED
   id: string;
   originalName: string;
   mimeType: string;
   size: number;
-  status: string;
   tempPath: string;
-  finalPath: string | null;
-  errorReason: string | null;
+  status: string;
   createdAt: Date;
   updatedAt: Date;
+  // OPTIONALS
+  finalPath: string | null;
+  errorReason: string | null;
   processedAt: Date | null;
 }
 
