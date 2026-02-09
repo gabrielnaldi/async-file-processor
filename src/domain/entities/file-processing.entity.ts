@@ -1,0 +1,34 @@
+import {
+  FileProcessingContract,
+  FileProcessingCreateContract,
+} from '../contracts/file-processing/file-processing.contract';
+
+export class FileProcessing {
+  private props: FileProcessingContract;
+
+  private constructor(contract: FileProcessingContract) {
+    this.props = contract;
+  }
+
+  public static create(createContract: FileProcessingCreateContract) {
+    const now = new Date();
+
+    const contractData: FileProcessingContract = {
+      id: createContract.id,
+      originalName: createContract.originalName,
+      mimeType: createContract.mimeType,
+      size: createContract.size,
+      tempPath: createContract.tempPath,
+      status: 'PENDING',
+      finalPath: null,
+      errorReason: null,
+      createdAt: now,
+      updatedAt: now,
+      processedAt: null,
+    };
+
+    const entity = new FileProcessing(contractData);
+
+    return entity;
+  }
+}
