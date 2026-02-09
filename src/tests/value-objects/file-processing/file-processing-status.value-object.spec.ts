@@ -1,4 +1,5 @@
 import { FileProcessingStatus } from '@src/domain/value-objects/file-processing/file-processing-status.value-object';
+import { FileProcessingStatusFactory } from '@src/tests/factories/file-processsing-status.factory';
 
 describe('FileProcessingStatus - Value Object', () => {
   it('should make sure to always be created with PENDING value', () => {
@@ -13,5 +14,13 @@ describe('FileProcessingStatus - Value Object', () => {
     fileProcessingStatus.markAsProcessing();
 
     expect(fileProcessingStatus.value).toBe('PROCESSING');
+  });
+
+  it('should be able to transition to COMPLETE', () => {
+    const fileProcessingStatus = FileProcessingStatusFactory.makeAProcessing();
+
+    fileProcessingStatus.markAsCompleted();
+
+    expect(fileProcessingStatus.value).toBe('COMPLETED');
   });
 });
