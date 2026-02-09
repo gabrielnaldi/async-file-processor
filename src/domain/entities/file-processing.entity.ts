@@ -12,7 +12,7 @@ export class FileProcessing {
 
   // GETTERS
   get id() {
-    return this.props.id;
+    return this.props.id.value;
   }
 
   get originalName() {

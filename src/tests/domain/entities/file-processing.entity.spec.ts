@@ -1,9 +1,12 @@
 import { FileProcessingCreateContract } from '@src/domain/contracts/file-processing/file-processing.contract';
 import { FileProcessing } from '@src/domain/entities/file-processing.entity';
+import { Id } from '@src/domain/value-objects/common/id.value-object';
 
 describe('FileProcessing - Entity', () => {
+  const valid_id = Id.create('1');
+
   const DATA_EXAMPLE: FileProcessingCreateContract = {
-    id: '1',
+    id: valid_id,
     originalName: 'example',
     mimeType: 'PDF',
     size: 100,

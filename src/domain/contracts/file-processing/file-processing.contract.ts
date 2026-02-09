@@ -1,6 +1,8 @@
+import { Id } from '@src/domain/value-objects/common/id.value-object';
+
 export interface FileProcessingContract {
   // REQUIRED
-  id: string;
+  id: Id;
   originalName: string;
   mimeType: string;
   size: number;
@@ -15,7 +17,7 @@ export interface FileProcessingContract {
 }
 
 export interface FileProcessingCreateContract {
-  id: string;
+  id: Id;
   originalName: string;
   mimeType: string;
   size: number;
