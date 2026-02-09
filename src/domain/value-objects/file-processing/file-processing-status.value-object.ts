@@ -12,6 +12,11 @@ export class FileProcessingStatus {
     return this._value;
   }
 
+  // TRANSITIONS
+  public startProcessing() {
+    this._value = 'PROCESSING';
+  }
+
   public static create() {
     const fileProcessingStatus = new FileProcessingStatus('PENDING');
 
