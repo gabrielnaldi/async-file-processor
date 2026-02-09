@@ -10,7 +10,7 @@ describe('FileProcessingStatus - Value Object', () => {
   it('should be able to transition to PROCESSING', () => {
     const fileProcessingStatus = FileProcessingStatus.create();
 
-    fileProcessingStatus.startProcessing();
+    fileProcessingStatus.markProcessing();
 
     expect(fileProcessingStatus.value).toBe('PROCESSING');
   });
