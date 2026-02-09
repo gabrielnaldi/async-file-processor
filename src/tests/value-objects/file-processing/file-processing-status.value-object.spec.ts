@@ -6,4 +6,12 @@ describe('FileProcessingStatus - Value Object', () => {
 
     expect(fileProcessingStatus.value).toBe('PENDING');
   });
+
+  it('should be able to transition to PROCESSING', () => {
+    const fileProcessingStatus = FileProcessingStatus.create();
+
+    fileProcessingStatus.startProcessing();
+
+    expect(fileProcessingStatus.value).toBe('PROCESSING');
+  });
 });
