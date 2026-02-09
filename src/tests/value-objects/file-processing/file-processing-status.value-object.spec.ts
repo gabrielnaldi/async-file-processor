@@ -32,6 +32,14 @@ describe('FileProcessingStatus - Value Object', () => {
     expect(fileProcessingStatus.value).toBe('FAILED');
   });
 
+  it('should not allow a status different from PENDING to transition to PROCESSING', () => {
+    const status = FileProcessingStatusFactory.makeAProcessing();
+
+    const fn = () => status.markAsProcessing();
+
+    expect(fn).toThrow('Only pending files can be processed!');
+  });
+
   it('should not allow a status different from PROCESSING to transition to COMPLETED', () => {
     const status = FileProcessingStatusFactory.makeAPending();
 
