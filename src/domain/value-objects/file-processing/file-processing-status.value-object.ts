@@ -24,6 +24,10 @@ export class FileProcessingStatus {
     this._value = 'COMPLETED';
   }
 
+  public markAsFailed() {
+    this._value = 'FAILED';
+  }
+
   public static create() {
     const fileProcessingStatus = new FileProcessingStatus('PENDING');
 
